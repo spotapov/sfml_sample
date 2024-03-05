@@ -13,32 +13,30 @@ int main()
     window.setFramerateLimit( 60 );
 
     Clock clock;
-
     while( window.isOpen() )
     {
-        for( auto event = Event{}; window.pollEvent(event); )
+        Event event;
+        while( window.pollEvent( event ) )
         {
             if( event.type == Event::Closed )
                 window.close();
 
             if( event.type == Event::KeyPressed )
-            {
-                if( event.key.code == Keyboard::Left )
-                    core.touch_left();
-
-                if( event.key.code == Keyboard::Right )
-                    core.touch_right();
-
-                if( event.key.code == Keyboard::Up )
-                    core.touch_up();
-
-                if( event.key.code == Keyboard::Down )
-                    core.touch_down();
-
                 if( event.key.code == Keyboard::Escape )
                     window.close();
-            }
         }
+
+        if( Keyboard::isKeyPressed( Keyboard::Left ) )
+            core.touch_left();
+
+        if( Keyboard::isKeyPressed( Keyboard::Right ) )
+            core.touch_right();
+
+        if( Keyboard::isKeyPressed( Keyboard::Up ) )
+            core.touch_up();
+
+        if( Keyboard::isKeyPressed( Keyboard::Down ) )
+            core.touch_down();
 
         core.update( clock.restart().asMicroseconds() );
 
