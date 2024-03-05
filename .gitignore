@@ -1,1 +1,4 @@
-CMakeLists.txt.user
+.vs
+**/x64/Debug
+**/x64/Release
+*.vcxproj.user
